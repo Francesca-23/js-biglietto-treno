@@ -22,15 +22,16 @@ function creazioneBiglietto(){
     let eta = document.getElementById('etaPasseggero').value;
 
     let prezzoKm = km * 0.21; 
-    Math.round(prezzoKm);
+
+    const sconto1 = prezzoKm * 0.2;
+    const sconto2 = prezzoKm * 0.4;
     
     if(eta < 18){
-        prezzoKm = km * 0.21 - 0.2; 
+        prezzoKm = prezzoKm - sconto1;
+    }
+    else if(eta > 65){
+        prezzoKm = prezzoKm - sconto2;
     }
 
-    if(eta > 65){
-        prezzoKm = km * 0.21 - 0.4; 
-    }
-
-    document.getElementById('prezzoFinale').innerHTML = `Il prezzo del biglietto è: ${prezzoKm}€ `;
+    document.getElementById('prezzoFinale').innerHTML = `Il prezzo del biglietto è: ${prezzoKm.toFixed(2)}€ `;
 }
